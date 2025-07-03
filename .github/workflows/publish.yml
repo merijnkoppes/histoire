@@ -18,6 +18,8 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
+        # with:
+        #   version: 8 # or your preferred pnpm version
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -25,6 +27,13 @@ jobs:
           node-version: 22.x
           registry-url: 'https://npm.pkg.github.com'
           scope: '@merijnkoppes'
+
+      - name: Configure .npmrc for GitHub Packages
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
+          echo "@merijnkoppes:registry=https://npm.pkg.github.com" >> ~/.npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
