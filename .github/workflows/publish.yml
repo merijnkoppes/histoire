@@ -28,12 +28,15 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@merijnkoppes'
 
+      - name: Clear project .npmrc if present
+        run: rm -f .npmrc
+
       - name: Configure .npmrc for GitHub Packages
         run: |
           echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
           echo "@merijnkoppes:registry=https://npm.pkg.github.com" >> ~/.npmrc
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_NPM_TOKEN }}
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -44,4 +47,4 @@ jobs:
       - name: Publish to GitHub Packages
         run: pnpm -r publish --no-git-checks
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_NPM_TOKEN }}
