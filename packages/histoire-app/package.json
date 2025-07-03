@@ -1,7 +1,7 @@
 {
   "name": "@merijnkoppes/histoire-app",
   "type": "module",
-  "version": "1.0.0-alpha.2.1",
+  "version": "1.0.0-alpha.2.2",
   "private": false,
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/merijnkoppes/histoire.git",
+    "url": "https://github.com/merijnkoppes/histoire",
     "type": "git",
     "directory": "packages/histoire-app"
   },
