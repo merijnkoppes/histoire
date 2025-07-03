@@ -40,6 +40,7 @@ const stats = computed(() => {
       alt="Logo"
       class="htw-w-64 htw-h-64 htw-opacity-25 htw-mb-8 htw-hidden md:htw-block"
     >
+    <h1>Masters in process histoire app</h1>
     <div class="htw-flex !md:htw-flex-col htw-flex-wrap htw-justify-evenly htw-gap-2 htw-px-4 htw-py-2 htw-bg-gray-100 dark:htw-bg-gray-750 htw-rounded htw-border htw-border-gray-500/30">
       <HomeCounter
         title="Stories"
