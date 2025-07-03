@@ -1,7 +1,12 @@
 {
-  "name": "@histoire/app",
+  "name": "@merijnkoppes/histoire-app",
   "type": "module",
   "version": "1.0.0-alpha.2",
+  "private": false,
+  "publishConfig": {
+  "registry": "https://npm.pkg.github.com",
+  "access": "public"
+},
   "description": "Pre-bundled UI for Histoire",
   "author": {
     "name": "Guillaume Chau"
@@ -12,9 +17,7 @@
     "type": "git",
     "directory": "packages/histoire-app"
   },
-  "publishConfig": {
-    "access": "public"
-  },
+
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
