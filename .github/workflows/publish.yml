@@ -32,7 +32,6 @@ jobs:
       - name: Build all packages
         run: pnpm -r build
 
-      # THIS IS THE CORRECT, STANDARD COMMAND
       - name: Publish to GitHub Packages
         run: pnpm -r publish --no-git-checks
         env:
