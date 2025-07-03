@@ -1,8 +1,11 @@
 {
-  "name": "@histoire/app",
+  "name": "@merijnkoppes/mip-histoire-app",
   "type": "module",
-  "version": "1.0.0-alpha.2-custom.1",
-  "private": true,
+"version": "1.0.0",
+  "private": false,
+    "publishConfig": {
+    "access": "public"
+  },
   "description": "Custom Histoire forked version",
   "author": {
     "name": "Merijn Koppes",
