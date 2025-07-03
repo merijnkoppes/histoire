@@ -1,13 +1,13 @@
 {
-  "name": "@merijnkoppes/histoire-app",
+  "name": "@merijnkoppes/mip-histoire-app",
   "type": "module",
-  "version": "1.0.0-alpha.2.2",
+  "version": "0.0.1",
   "private": false,
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
-  "description": "Pre-bundled UI for Histoire",
+  "description": "Custom Histoire forked version",
   "author": {
     "name": "Merijn Koppes",
     "url": "https://github.com/merijnkoppes"
@@ -16,7 +16,7 @@
   "repository": {
     "url": "https://github.com/merijnkoppes/histoire",
     "type": "git",
-    "directory": "packages/histoire-app"
+    "directory": "packages/mip-histoire-app"
   },
 
   "exports": {
