@@ -1,7 +1,7 @@
 {
   "name": "@merijnkoppes/histoire-app",
   "type": "module",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.2.1",
   "private": false,
   "publishConfig": {
   "registry": "https://npm.pkg.github.com",
@@ -9,11 +9,12 @@
 },
   "description": "Pre-bundled UI for Histoire",
   "author": {
-    "name": "Guillaume Chau"
+    "name": "Merijn Koppes",
+    "url": "https://github.com/merijnkoppes"
   },
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/Akryum/histoire.git",
+    "url": "https://github.com/merijnkoppes/histoire.git",
     "type": "git",
     "directory": "packages/histoire-app"
   },
