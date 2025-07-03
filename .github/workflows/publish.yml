@@ -1,0 +1,56 @@
+# A descriptive name for your workflow
+name: Publish to GitHub Packages
+
+# This section defines when the workflow will run.
+on:
+  # It triggers every time you push a commit to the 'main' branch.
+  push:
+    branches:
+      - main
+
+# This section defines the jobs to be run. We have one job called 'publish'.
+jobs:
+  publish:
+    # The job will run on a fresh, virtual Ubuntu machine.
+    runs-on: ubuntu-latest
+    # This section grants the necessary permissions for the job.
+    permissions:
+      contents: read # Allows the job to check out your repository code.
+      packages: write # Allows the job to publish packages to your account.
+
+    # These are the individual steps the job will take, in order.
+    steps:
+      # Step 1: Checks out your repository's code onto the virtual machine.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Sets up the pnpm package manager.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      # Step 3: Sets up Node.js and configures it to publish to GitHub Packages.
+      # The 'scope' is crucial for telling it which packages belong to you.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@merijnkoppes'
+
+      # Step 4: Installs all the dependencies from your pnpm-lock.yaml file.
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Step 5: Runs the 'build' script found in each package's package.json.
+      - name: Build all packages
+        run: pnpm -r build
+
+      # Step 6: Publishes every package that has a new version number.
+      - name: Publish to GitHub Packages
+        run: pnpm -r publish --no-git-checks
+        env:
+          # This special token is automatically created by GitHub for the workflow.
+          # It has the correct permissions and correctly links the package to this repository.
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

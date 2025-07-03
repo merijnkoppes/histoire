@@ -4,9 +4,9 @@
   "version": "1.0.0-alpha.2.1",
   "private": false,
   "publishConfig": {
-  "registry": "https://npm.pkg.github.com",
-  "access": "public"
-},
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
   "description": "Pre-bundled UI for Histoire",
   "author": {
     "name": "Merijn Koppes",
