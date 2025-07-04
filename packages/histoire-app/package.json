@@ -1,7 +1,7 @@
 {
   "name": "@merijnkoppes/mip-histoire-app",
   "type": "module",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "private": false,
   "publishConfig": {
     "access": "public"
