@@ -6,4 +6,4 @@ To publish the package,
 
 3 pnpm run build
 
-4 
+4 npm publish --acces public
