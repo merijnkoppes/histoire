@@ -38,13 +38,13 @@
   "main": "./dist/bundle-index.js", // Good practice to have a main/module fallback
   "module": "./dist/bundle-index.js", // Assuming bundle-index.js is ESM
   "types": "./dist/index.d.ts", // POINT TO COMPILED TYPES
-  // "files": [
-  //   // "dist", // ENSURE your compiled output is included
-  //   // "histoire.config.ts", // If this file is part of the package to be consumed
-  //   // "tailwind.config.cjs", // If this is needed by consuming projects
-  //   // "postcss.config.cjs",  // If this is needed by consuming projects
-  //   // "scripts" // If your scripts/copy.mjs needs to be present for consumers
-  // ],
+  "files": [
+    "dist", // ENSURE your compiled output is included
+    // "histoire.config.ts", // If this file is part of the package to be consumed
+    // "tailwind.config.cjs", // If this is needed by consuming projects
+    // "postcss.config.cjs",  // If this is needed by consuming projects
+    // "scripts" // If your scripts/copy.mjs needs to be present for consumers
+  ],
   "scripts": {
     "build": "rimraf dist && vite build && pnpm run build:css && node ./scripts/copy.mjs && vue-tsc --emitDeclarationOnly --declaration --outDir dist", // Added vue-tsc for types
     "build:css": "tailwindcss -i src/app/style/main.pcss -o ./dist/style.css -c tailwind.config.cjs --postcss postcss.config.cjs",
