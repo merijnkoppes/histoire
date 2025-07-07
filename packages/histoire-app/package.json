@@ -1,7 +1,7 @@
 {
   "name": "@merijnkoppes/app",
   "type": "module",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -15,7 +15,7 @@
   "repository": {
     "url": "https://github.com/merijnkoppes/histoire",
     "type": "git",
-    "directory": "packages/aap"
+    "directory": "packages/app"
   },
   "exports": {
     ".": {
