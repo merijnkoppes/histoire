@@ -1,7 +1,7 @@
 {
   "name": "@merijnkoppes/app",
   "type": "module",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -20,15 +20,36 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./dist/bundle-index.js"
+      "import": "./dist/bundle-index.js", // Explicit ESM for bundlers
+      "default": "./dist/bundle-index.js" // Fallback for broader compatibility
     },
-    "./*": "./*"
+    // This allows importing from subpaths within your dist folder
+    // E.g., import 'your-package/dist/some-asset.css'
+    "./dist/*": "./dist/*"
+    // Consider if you need to expose anything directly from 'src' for dev,
+    // but for published packages, it's usually 'dist'.
+    // If you have specific modules Histoire needs to load that aren't the main bundle,
+    // define them here explicitly, e.g., if you have a custom Vite plugin:
+    // "./vite-plugin": {
+    //   "types": "./dist/vite-plugin.d.ts",
+    //   "import": "./dist/vite-plugin.js"
+    // }
   },
-  "types": "./src/index.ts",
+  "main": "./dist/bundle-index.js", // Good practice to have a main/module fallback
+  "module": "./dist/bundle-index.js", // Assuming bundle-index.js is ESM
+  "types": "./dist/index.d.ts", // POINT TO COMPILED TYPES
+  // "files": [
+  //   // "dist", // ENSURE your compiled output is included
+  //   // "histoire.config.ts", // If this file is part of the package to be consumed
+  //   // "tailwind.config.cjs", // If this is needed by consuming projects
+  //   // "postcss.config.cjs",  // If this is needed by consuming projects
+  //   // "scripts" // If your scripts/copy.mjs needs to be present for consumers
+  // ],
   "scripts": {
-    "build": "rimraf dist && vite build && pnpm run build:css && node ./scripts/copy.mjs",
+    "build": "rimraf dist && vite build && pnpm run build:css && node ./scripts/copy.mjs && vue-tsc --emitDeclarationOnly --declaration --outDir dist", // Added vue-tsc for types
     "build:css": "tailwindcss -i src/app/style/main.pcss -o ./dist/style.css -c tailwind.config.cjs --postcss postcss.config.cjs",
-    "watch": "concurrently \"vite build --watch\" \"pnpm run build:css --watch\" \"node ./scripts/watchAndCopy.mjs\""
+    "watch": "concurrently \"vite build --watch\" \"pnpm run build:css --watch\" \"node ./scripts/watchAndCopy.mjs\"",
+    "prepublishOnly": "pnpm run build" // Crucial: ensure build runs before publish
   },
   "dependencies": {
     "@histoire/controls": "workspace:^",
@@ -36,6 +57,14 @@
     "@histoire/vendors": "workspace:^",
     "fuse.js": "^7.0.0",
     "shiki": "^3.0.0"
+  },
+  "peerDependencies": {
+    // These are expected to be installed by the consuming project
+    "histoire": "^1.0.0-alpha.2", // Match the version range in Nuxt project
+    "@histoire/plugin-vue": "^1.0.0-alpha.2",
+    "@histoire/plugin-nuxt": "^1.0.0-alpha.2",
+    "vue": "^3.5.13", // Match the version in Nuxt project (or compatible range)
+    "vite": "^6.0.5" // Match the version used by Histoire in Nuxt project
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
@@ -50,9 +79,10 @@
     "pathe": "^1.1.2",
     "postcss": "^8.4.49",
     "postcss-import": "^16.1.0",
+    "rimraf": "^6.0.0", // Ensure rimraf is available for build
     "tailwindcss": "^3.4.16",
     "typescript": "5.6.3",
     "vite": "^6.0.5",
-    "vue": "^3.5.13"
+    "vue-tsc": "^2.1.10"
   }
 }
