@@ -1,7 +1,7 @@
 {
-  "name": "@merijnkoppes/mip-histoire-app",
+  "name": "@merijnkoppes/app",
   "type": "module",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -15,7 +15,7 @@
   "repository": {
     "url": "https://github.com/merijnkoppes/histoire",
     "type": "git",
-    "directory": "packages/mip-histoire-app"
+    "directory": "packages/aap"
   },
   "exports": {
     ".": {
