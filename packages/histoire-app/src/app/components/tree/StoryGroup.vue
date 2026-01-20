@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<{
 const folderStore = useFolderStore()
 
 const folderPath = computed(() => [...props.path, props.group.title])
-const isFolderOpen = computed(() => folderStore.isFolderOpened(folderPath.value, true))
+const isFolderOpen = computed(() => folderStore.isFolderOpened(folderPath.value, false))
 
 function toggleOpen() {
   folderStore.toggleFolder(folderPath.value, false)
