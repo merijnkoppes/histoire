@@ -4,4 +4,7 @@ To publish the package,
 
 2 pnpm -r run build
 
-4 pnpm publish --filter @merijnkoppes/app --acces public
+3 npm login
+  npm whoami
+
+4 pnpm -w publish --filter "./packages/histoire-app" --access public
